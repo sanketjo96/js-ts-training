@@ -1,9 +1,15 @@
 /*
- * Concept: array / polyfills / reduce
+ * Concept: array / polyfill — Array.prototype.reduce
  * Run: node "2. array/polyfills/2. reduce.js"
- * Notes:
- *   - Comment out alternate examples when you want to run one scenario at a time.
- *   - Execute from repository root: node "2. array/polyfills/2. reduce.js"
+ *
+ * CONCEPT: Array.reduce folds an array into a single accumulated value using a
+ *   callback. If an initial value is provided it is used as the first accumulator;
+ *   otherwise the first element is the accumulator and iteration starts at index 1.
+ *   Calling reduce on an empty array without an initial value throws a TypeError.
+ *
+ * HOW THIS PROGRAM DEMONSTRATES IT:
+ *   newReduce handles both the initial-value and no-initial-value cases, guards
+ *   against the empty-array edge case, and sums a number array starting from 100.
  */
 
 Array.prototype.newReduce = function (callback, acc) {
@@ -33,5 +39,5 @@ Array.prototype.newReduce = function (callback, acc) {
 }
 
 const icecreamRate = [10, 20, 30, 40]
-const acc = icecreamRate.newReduce((acc, item) => acc + item, 100)
-console.log(acc)
+const total = icecreamRate.newReduce((acc, item) => acc + item, 100)
+console.log(total)

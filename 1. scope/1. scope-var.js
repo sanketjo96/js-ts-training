@@ -1,24 +1,25 @@
 /*
- * Concept: scope / scope var
+ * Concept: scope / var
  * Run: node "1. scope/1. scope-var.js"
- * Notes:
- *   - Comment out alternate examples when you want to run one scenario at a time.
- *   - Execute from repository root: node "1. scope/1. scope-var.js"
+ *
+ * CONCEPT: var is function-scoped, not block-scoped. Declaring var inside an
+ *   if-block does not create a new variable — it overwrites the enclosing
+ *   function's variable.
+ *
+ * HOW THIS PROGRAM DEMONSTRATES IT:
+ *   ✗ BAD  — var inside the if-block silently overwrites the function-level
+ *             flavour, so "pista" replaces "straberry" without any indication.
+ *   ✓ GOOD — The global flavour stays "mango" because icecream() has its own
+ *             function scope — var cannot leak across function boundaries.
  */
-
-// global scope
 
 flavour = "mango"
 
 function icecream() {
-    // var is functional scope
     var flavour = "straberry"
     console.log("Functional scope: " + flavour)
     if (1) {
-        // JS dont have block scope for var. It does
-        // not create new variable here, it shadows nearest functional
-        // scope variable for same name.
-        var flavour = "pista" 
+        var flavour = "pista"
         console.log("Functional scope: " + flavour)
     }
 }

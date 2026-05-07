@@ -1,9 +1,14 @@
 /*
- * Concept: scope / scope const let
+ * Concept: scope / const and let
  * Run: node "1. scope/3. scope-const-let.js"
- * Notes:
- *   - Comment out alternate examples when you want to run one scenario at a time.
- *   - Execute from repository root: node "1. scope/3. scope-const-let.js"
+ *
+ * CONCEPT: let and const are block-scoped. Each block { } creates a new binding,
+ *   so a let inside an if-block is a completely separate variable from one with
+ *   the same name in the enclosing function.
+ *
+ * HOW THIS PROGRAM DEMONSTRATES IT:
+ *   ✓ GOOD — let inside the if-block prints "pista" but the outer let still holds
+ *             "mango". No mutation of the outer variable occurred.
  */
 
 function blockScopeExample() {

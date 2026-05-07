@@ -1,9 +1,16 @@
 /*
- * Concept: objects / thisBinding
+ * Concept: objects / this binding
  * Run: node "4. objects/3. thisBinding.js"
- * Notes:
- *   - Comment out alternate examples when you want to run one scenario at a time.
- *   - Execute from repository root: node "4. objects/3. thisBinding.js"
+ *
+ * CONCEPT: this refers to the object that called the function, not where the
+ *   function was defined. Constructor calls bind this to the new instance.
+ *   Method calls on an object bind this to that object. Detaching a method
+ *   and calling it as a plain function loses the binding.
+ *
+ * HOW THIS PROGRAM DEMONSTRATES IT:
+ *   ✗ BAD  — lostGetName is detached from icecreamObj. Called as a plain function,
+ *             this is undefined (strict mode) or global, so it returns undefined.
+ *   ✓ GOOD — icecreamObj.getName() retains the correct this binding to icecreamObj.
  */
 
 function Person(name) {

@@ -1,12 +1,15 @@
 /*
- * Concept: Promise / promise
+ * Concept: async / Promise basics
  * Run: node "5. Promise/2. promise.js"
- * Notes:
- *   - Comment out alternate examples when you want to run one scenario at a time.
- *   - Execute from repository root: node "5. Promise/2. promise.js"
+ *
+ * CONCEPT: A Promise represents a value that will be available in the future.
+ *   It settles as either resolved (success) or rejected (failure). Handlers
+ *   are attached with .then (success), .catch (failure), and .finally (always).
+ *
+ * HOW THIS PROGRAM DEMONSTRATES IT:
+ *   A Promise wraps a setTimeout. isSummer=false triggers the reject path.
+ *   .catch handles the rejection and .finally always runs after either outcome.
  */
-
-// Promise is a representation of an upcoming success or failure.
 
 let isSummer = false
 console.log("start")

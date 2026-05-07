@@ -1,9 +1,16 @@
 /*
- * Concept: oops / old / inheritance
+ * Concept: OOP / prototypal inheritance (pre-ES6)
  * Run: node "8. oops/old/1. inheritance.js"
- * Notes:
- *   - Comment out alternate examples when you want to run one scenario at a time.
- *   - Execute from repository root: node "8. oops/old/1. inheritance.js"
+ *
+ * CONCEPT: Before ES6 classes, inheritance was done manually via prototype chains.
+ *   The child constructor calls the parent with .call(this) to copy own properties.
+ *   Object.create links the child's prototype to the parent's prototype. The
+ *   constructor reference must then be restored manually.
+ *
+ * HOW THIS PROGRAM DEMONSTRATES IT:
+ *   ConeIcecream inherits from Icecream via Object.create. Methods on
+ *   Icecream.prototype are reachable through the chain. toText() is overridden
+ *   on ConeIcecream.prototype. category is shared via Icecream.prototype.
  */
 
 function Icecream(flavour, freezingPoint) {
@@ -49,6 +56,6 @@ const mangoIcecreamCone = new ConeIcecream("mango", "4dc", "single", "normal con
 console.log(mangoIcecreamCone)
 console.log(typeof mangoIcecreamCone)
 console.log(mangoIcecreamCone instanceof ConeIcecream)
-console.log(mangoIcecreamCone.getFlavour()) // inherited from base class
-console.log(mangoIcecreamCone.toText()) // derived class overrides base method
-console.log(mangoIcecreamCone.category) // shared property from prototype
+console.log(mangoIcecreamCone.getFlavour())  // inherited from Icecream.prototype
+console.log(mangoIcecreamCone.toText())      // overridden on ConeIcecream.prototype
+console.log(mangoIcecreamCone.category)      // shared via Icecream.prototype

@@ -38,9 +38,9 @@ class Cashier extends Servable {
     serve() { return 'Cashier serves icecream' }  // only what a cashier does
 }
 
-class IcecreamMaker extends Servable, Churnable {
+class IcecreamMaker extends Servable {
     serve() { return 'Maker serves icecream' }
-    churn() { return 'Maker churns icecream' }    // opts in to both roles
+    churn() { return 'Maker churns icecream' }    // opts in to churn beyond what Servable requires
 }
 
 // ─── Usage ───────────────────────────────────────────────────────────────────

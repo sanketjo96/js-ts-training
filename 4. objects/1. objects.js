@@ -1,9 +1,17 @@
 /*
- * Concept: objects / objects
+ * Concept: objects / reference assignment and default parameters
  * Run: node "4. objects/1. objects.js"
- * Notes:
- *   - Comment out alternate examples when you want to run one scenario at a time.
- *   - Execute from repository root: node "4. objects/1. objects.js"
+ *
+ * CONCEPT: Objects are passed and assigned by reference. Mutating through any
+ *   reference affects all references to the same object. Default function
+ *   parameters are evaluated fresh on each call — they do not close over the
+ *   value the argument had at definition time.
+ *
+ * HOW THIS PROGRAM DEMONSTRATES IT:
+ *   ✗ BAD  — otherIcecream and iceCream point to the same object; mutating
+ *             otherIcecream.taste also changes iceCream.taste.
+ *   ✓ GOOD — The default parameter spreads a fresh copy with expiry 20, so
+ *             tasteIcecream() without arguments always evaluates the default fresh.
  */
 
 const iceCream = {

@@ -1,9 +1,16 @@
 /*
- * Concept: Promise / polyfills / promise
+ * Concept: async / polyfill — Promise
  * Run: node "5. Promise/polyfills/1. promise.js"
- * Notes:
- *   - Comment out alternate examples when you want to run one scenario at a time.
- *   - Execute from repository root: node "5. Promise/polyfills/1. promise.js"
+ *
+ * CONCEPT: A Promise wraps an executor and defers callbacks registered via
+ *   .then/.catch until the executor calls resolve or reject. If the promise
+ *   already settled before .then/.catch is registered, the callback fires
+ *   immediately using the stored value.
+ *
+ * HOW THIS PROGRAM DEMONSTRATES IT:
+ *   godPromise implements the core Promise contract from scratch. Calling
+ *   reject("data") stores the value and fires the .catch handler. Swapping to
+ *   resolve would fire the .then handler instead.
  */
 
 function godPromise(executor) {

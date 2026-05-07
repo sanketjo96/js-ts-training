@@ -1,9 +1,14 @@
 /*
- * Concept: array / polyfills / 3.forEach
+ * Concept: array / polyfill — Array.prototype.forEach
  * Run: node "2. array/polyfills/3.forEach.js"
- * Notes:
- *   - Comment out alternate examples when you want to run one scenario at a time.
- *   - Execute from repository root: node "2. array/polyfills/3.forEach.js"
+ *
+ * CONCEPT: Array.forEach iterates over each element and invokes the callback
+ *   with (element, index, array). It always returns undefined and never mutates
+ *   the original array. It supports an optional thisArg like map.
+ *
+ * HOW THIS PROGRAM DEMONSTRATES IT:
+ *   newForEach is implemented on Array.prototype. The demo logs each element
+ *   with its index, then confirms the original array is unchanged after iteration.
  */
 
 Array.prototype.newForEach = function (callback, thisArg) {

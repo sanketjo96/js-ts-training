@@ -1,13 +1,17 @@
 /*
- * Concept: scope / guess / snippet
+ * Concept: scope / output prediction — hoisting inside a function
  * Run: node "1. scope/4. guess/2. snippet.js"
- * Notes:
- *   - Comment out alternate examples when you want to run one scenario at a time.
- *   - Execute from repository root: node "1. scope/4. guess/2. snippet.js"
+ *
+ * CONCEPT: var declarations inside a function are hoisted to the top of that
+ *   function and initialized as undefined before any code in the function runs.
+ *   The assignment of the actual value stays at the original line.
+ *
+ * HOW THIS PROGRAM DEMONSTRATES IT:
+ *   console.log before the var assignment prints undefined, not a ReferenceError,
+ *   because the declaration was hoisted. The second log prints "strawberry".
  */
 
 function icecream() {
-    // No error, but declaration gets hoisted to the top of scope.
     console.log("Initial flavour:", flavour)
     var flavour = "strawberry"
     console.log("Final flavour:", flavour)

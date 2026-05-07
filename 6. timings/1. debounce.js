@@ -1,12 +1,16 @@
 /*
  * Concept: timings / debounce
  * Run: node "6. timings/1. debounce.js"
- * Notes:
- *   - Comment out alternate examples when you want to run one scenario at a time.
- *   - Execute from repository root: node "6. timings/1. debounce.js"
+ *
+ * CONCEPT: Debounce delays a function call until after a quiet period has passed.
+ *   Every new invocation resets the timer. The function only fires once the caller
+ *   has stopped triggering it for the full delay duration.
+ *
+ * HOW THIS PROGRAM DEMONSTRATES IT:
+ *   Five rapid calls are fired in sequence — the timer resets on each. Only
+ *   "call 5" executes after the 600ms quiet period. "call 6" fires after a
+ *   deliberate 600ms pause because the quiet period elapsed again.
  */
-
-// Debouncing responds only after a quiet period.
 
 function makeDebounced(fn, delay) {
     let timer
@@ -27,7 +31,7 @@ debouncedLog("call 1")
 debouncedLog("call 2")
 debouncedLog("call 3")
 debouncedLog("call 4")
-debouncedLog("call 5") // only this should fire
+debouncedLog("call 5")
 
 setTimeout(() => {
     console.log("Firing after a pause (600ms later)...")

@@ -1,9 +1,15 @@
 /*
- * Concept: Promise / polyfills / all
+ * Concept: async / polyfill — Promise.all
  * Run: node "5. Promise/polyfills/2. all.js"
- * Notes:
- *   - Comment out alternate examples when you want to run one scenario at a time.
- *   - Execute from repository root: node "5. Promise/polyfills/2. all.js"
+ *
+ * CONCEPT: Promise.all resolves when every promise in the array resolves,
+ *   returning all results in their original order. If any promise rejects,
+ *   the whole batch rejects immediately and further resolutions are ignored.
+ *
+ * HOW THIS PROGRAM DEMONSTRATES IT:
+ *   myPromiseAll tracks per-index results and a shared rejection flag. When the
+ *   resolved count reaches the total, the success callback fires with all results.
+ *   The first rejection fires the error callback and blocks any further success handling.
  */
 
 function Task(name, time = 1000, isPartyTime = true) {

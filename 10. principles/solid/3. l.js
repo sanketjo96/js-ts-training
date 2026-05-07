@@ -39,7 +39,7 @@ class SoftServe extends Icecream {
 
 // ─── Usage ───────────────────────────────────────────────────────────────────
 function serveToCustomer(icecream) {
-    console.log(icecream.serve())   // works for every subtype
+    console.log(icecream.serve())
 }
 
 serveToCustomer(new ScoopableIcecream())  // Serving icecream

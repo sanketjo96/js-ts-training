@@ -1,9 +1,16 @@
 /*
- * Concept: functions / modularjs
+ * Concept: functions / module pattern (IIFE)
  * Run: node "3. functions/1. modularjs.js"
- * Notes:
- *   - Comment out alternate examples when you want to run one scenario at a time.
- *   - Execute from repository root: node "3. functions/1. modularjs.js"
+ *
+ * CONCEPT: An IIFE (Immediately Invoked Function Expression) creates a private
+ *   scope. Only what is explicitly returned is accessible from outside — everything
+ *   else stays hidden, simulating module-level encapsulation without a bundler.
+ *
+ * HOW THIS PROGRAM DEMONSTRATES IT:
+ *   ✗ BAD  — mix and temp are private variables; they cannot be read or mutated
+ *             from outside the IIFE at all.
+ *   ✓ GOOD — getFlavours and getMenu are the only exported methods via the
+ *             returned object. Internal state is fully encapsulated.
  */
 
 const icecreamShop = (() => {
@@ -16,12 +23,9 @@ const icecreamShop = (() => {
             return pulps
         },
         getMenu: function () {
-            return pulps.map(item => {
-                return { [item]: 100 } 
-            })
+            return pulps.map(item => ({ [item]: 100 }))
         }
     }
-
 })();
 
 console.log(icecreamShop.getFlavours())

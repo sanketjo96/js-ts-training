@@ -1,12 +1,16 @@
 /*
  * Concept: timings / throttle
  * Run: node "6. timings/2. throttle.js"
- * Notes:
- *   - Comment out alternate examples when you want to run one scenario at a time.
- *   - Execute from repository root: node "6. timings/2. throttle.js"
+ *
+ * CONCEPT: Throttle limits a function to at most one execution per time interval.
+ *   Unlike debounce, it fires immediately on the first call and then silences
+ *   all subsequent calls until the interval has elapsed.
+ *
+ * HOW THIS PROGRAM DEMONSTRATES IT:
+ *   Five rapid calls are fired — only the first executes because the remaining
+ *   four fall within the 100ms window. After the interval elapses, the first
+ *   call in the next batch fires again.
  */
-
-// Throttling limits function execution to once per interval.
 
 function makeThrottled(fn, delay) {
     let lastCallTime = 0

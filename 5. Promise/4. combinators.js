@@ -1,9 +1,16 @@
 /*
- * Concept: Promise / combinators
+ * Concept: async / Promise combinators
  * Run: node "5. Promise/4. combinators.js"
- * Notes:
- *   - Comment out alternate examples when you want to run one scenario at a time.
- *   - Execute from repository root: node "5. Promise/4. combinators.js"
+ *
+ * CONCEPT: Promise combinators run multiple promises in parallel and aggregate results.
+ *   - Promise.all       — resolves when all resolve; rejects on the first failure.
+ *   - Promise.allSettled — waits for all to settle; always resolves with all outcomes.
+ *   - Promise.race      — resolves or rejects with whichever promise settles first.
+ *   - Promise.any       — resolves with the first success; rejects only if all fail.
+ *
+ * HOW THIS PROGRAM DEMONSTRATES IT:
+ *   Uncomment one combinator block at a time. Promise.all is active by default —
+ *   one failing task causes the entire batch to reject immediately.
  */
 
 function Task(name, time = 1000, isPartyTime = true) {
@@ -14,16 +21,14 @@ function Task(name, time = 1000, isPartyTime = true) {
             } else {
                 reject("error in task " + name)
             }
-
         }, time)
     })
 }
 
-
-// Promise.all - parallel execuation, one failed everything failed
+// Promise.all — all must resolve; one failure rejects the whole batch
 Promise.all([
-    Task("find icecream shoop"),
-    Task("find food to order", 1000 ,false),
+    Task("find icecream shop"),
+    Task("find food to order", 1000, false),
     Task("find party place")
 ]).then((result) => {
     console.log("Result for .all")
@@ -31,28 +36,22 @@ Promise.all([
 }).catch(e => console.log(e))
 
 
-// Promise.allSettled - exactly similar to all but it returns falied as well as succeeded promises/
-// settled - success or fail 
-// If all failed - catch
-// If any one succeed - then
+// Promise.allSettled — waits for all; returns both fulfilled and rejected outcomes
 // Promise.allSettled([
 //     Task("find icecream from zomato", 1000, false),
 //     Task("find icecream from swiggy", 200),
-//     Task("find icecream from local vender", 500, false)
+//     Task("find icecream from local vendor", 500, false)
 // ]).then((result) => {
 //     console.log("Result for .allSettled")
 //     console.log(result)
 // }).catch(e => console.log(e))
 
 
-// Promise.race - it runs in parallel but returns first promise which will be failed or succeed
-// quickest failed - catch
-// quickest success - the
-// If all failed - catch
+// Promise.race — returns the first to settle (success or failure)
 // Promise.race([
 //     Task("find icecream from zomato", 1000, true),
 //     Task("find icecream from swiggy", 1000, false),
-//     Task("find icecream from local vender", 1000, false)
+//     Task("find icecream from local vendor", 1000, false)
 // ]).then((result) => {
 //     console.log("Result for .race")
 //     console.log(result)
@@ -62,11 +61,11 @@ Promise.all([
 // })
 
 
-// Promise.any - parallel but returns first successful promise, fails if every single one failed
+// Promise.any — returns the first success; rejects only if every promise fails
 // Promise.any([
-//     Task("find icecream from zomato", 1000,false),
+//     Task("find icecream from zomato", 1000, false),
 //     Task("find icecream from swiggy", 200, false),
-//     Task("find icecream from local vender", 500, false)
+//     Task("find icecream from local vendor", 500, false)
 // ]).then((result) => {
 //     console.log("Result for .any")
 //     console.log(result)

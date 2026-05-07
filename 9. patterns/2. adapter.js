@@ -1,9 +1,15 @@
 /*
- * Concept: patterns / adapter
+ * Concept: patterns / Adapter
  * Run: node "9. patterns/2. adapter.js"
- * Notes:
- *   - Comment out alternate examples when you want to run one scenario at a time.
- *   - Execute from repository root: node "9. patterns/2. adapter.js"
+ *
+ * CONCEPT: The Adapter pattern wraps an incompatible interface so it fits the
+ *   interface the rest of the system expects, without changing either side.
+ *   The adapter translates between the two, acting as a bridge.
+ *
+ * HOW THIS PROGRAM DEMONSTRATES IT:
+ *   LegacyIcecreamVendor returns { flavour, size, cost }. IcecreamAdapter
+ *   translates it to { name, price, size } so callers work with the expected
+ *   shape without knowing anything about the legacy format.
  */
 
 class LegacyIcecreamVendor {
