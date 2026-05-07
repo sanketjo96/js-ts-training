@@ -17,7 +17,8 @@ Runnable examples for senior JavaScript interviews. Each file has a `Run:` comma
 9. [Design Patterns](#9-design-patterns)
 10. [SOLID Principles](#10-solid-principles)
 11. [Advanced Features](#11-advanced-features)
-12. [Not Yet Implemented](#not-yet-implemented)
+12. [LeetCode-style Problems](#12-leetcode-style-problems)
+13. [Not Yet Implemented](#not-yet-implemented)
 
 ---
 
@@ -73,8 +74,17 @@ Runnable examples for senior JavaScript interviews. Each file has a `Run:` comma
 | [1. objects.js](4.%20objects/1.%20objects.js) | Objects assigned by reference; default parameters are re-evaluated each call |
 | [2. deep_copy.js](4.%20objects/2.%20deep_copy.js) | Shallow copy (`Object.assign`) vs deep copy (`JSON.parse/stringify`) |
 | [3. thisBinding.js](4.%20objects/3.%20thisBinding.js) | Constructor, method, and detached `this` binding |
+| [4. call-apply-bind.js](4.%20objects/4.%20call-apply-bind.js) | `call`/`apply`/`bind` side by side — args as list, array, or pre-bound; partial application with `bind` |
 
-**Not implemented:** Custom `call`/`apply`/`bind`, nested property access (`lodash.get/set`), `Object.freeze`
+**Polyfills:**
+
+| File | What it shows |
+|------|---------------|
+| [polyfills/call.js](4.%20objects/polyfills/call.js) | `Function.prototype.customCall` — attaches `this` via a Symbol property, calls, then deletes |
+| [polyfills/apply.js](4.%20objects/polyfills/apply.js) | `Function.prototype.customApply` — same trick, spreads the args array |
+| [polyfills/bind.js](4.%20objects/polyfills/bind.js) | `Function.prototype.customBind` — returns a closure that merges pre-bound and caller args |
+
+**Not implemented:** Nested property access (`lodash.get/set`), `Object.freeze`
 
 ---
 
@@ -88,10 +98,12 @@ Runnable examples for senior JavaScript interviews. Each file has a `Run:` comma
 | [2. promise.js](5.%20Promise/2.%20promise.js) | Promise basics — resolve, reject, `.then`, `.catch`, `.finally` |
 | [3. promisechain.js](5.%20Promise/3.%20promisechain.js) | Flat `.then` chain replacing nested callbacks |
 | [4. combinators.js](5.%20Promise/4.%20combinators.js) | `Promise.all`, `.allSettled`, `.race`, `.any` — uncomment one at a time |
+| [5. await.js](5.%20Promise/5.%20await.js) | `async`/`await` syntax — sequential `await` inside an async function |
 | [polyfills/1. promise.js](5.%20Promise/polyfills/1.%20promise.js) | Promise built from scratch |
 | [polyfills/2. all.js](5.%20Promise/polyfills/2.%20all.js) | `Promise.all` built from scratch |
+| [polyfills/3. allsettled.js](5.%20Promise/polyfills/3.%20allsettled.js) | `Promise.allSettled` built from scratch — collects both resolved and rejected results |
 
-**Not implemented:** `async`/`await` syntax, `allSettled`/`race`/`any` polyfills, event loop visualization
+**Not implemented:** `race`/`any` polyfills, event loop visualization
 
 ---
 
@@ -172,14 +184,24 @@ Each file shows a **bad** implementation and a **good** implementation side by s
 
 ---
 
+## 12. LeetCode-style Problems
+
+**Concepts:** Async programming challenges frequently asked in interviews.
+
+| File | What it shows |
+|------|---------------|
+| [leets/async_prog/1. sleep.js](leets/async_prog/1.%20sleep.js) | `sleep(ms)` — Promise that resolves after a given delay |
+| [leets/async_prog/2. limitPromise.js](leets/async_prog/2.%20limitPromise.js) | `timeLimit(fn, t)` — wraps a function; rejects with `'Time Limit Exceeded'` via `Promise.race` |
+| [leets/async_prog/3. memoize.js](leets/async_prog/3.%20memoize.js) | Async memoize v1 — caches the resolved result; concurrent duplicate calls can bypass the cache |
+| [leets/async_prog/4. memoize-1.js](leets/async_prog/4.%20memoize-1.js) | Async memoize v2 — caches the Promise itself; concurrent duplicate calls share one execution |
+
+---
+
 ## Not Yet Implemented
 
 | Topic | Where it belongs |
 |-------|-----------------|
-| `async`/`await` syntax | Add to section 5 alongside promise chain |
 | `filter`, `find`, `some`, `every`, `flat` polyfills | Add to section 2 |
-| Memoization | Add to section 3 |
-| Custom `call`/`apply`/`bind` | Add to section 4 |
 | Destructuring | New section — array/object destructuring, defaults, renaming |
 | Type coercion | New section — `==` vs `===`, implicit conversions, `+` quirks |
 | Error handling | New section — custom errors, `try`/`catch`/`finally`, async propagation |
